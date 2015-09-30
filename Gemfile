@@ -9,6 +9,7 @@ gem 'spring', :group => :development
 
 gem 'rspec-collection_matchers'
 
+gem "active_model_serializers", "~> 0.8.0"
 
 group :development, :test do
   gem 'pry'
