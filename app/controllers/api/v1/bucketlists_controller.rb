@@ -1,7 +1,7 @@
 class Api::V1::BucketlistsController < ApplicationController
   def index
     @bucketlists = Bucketlist.all
-    render json: @bucketlists, root: false
+    render json: @bucketlists
   end
 
   def new
@@ -10,7 +10,7 @@ class Api::V1::BucketlistsController < ApplicationController
 
   def create
     @bucketlist = Bucketlist.create(bucketlist_params)
-    render json: @bucketlists, root: false if @bucketlist.save
+    render json: @bucketlists if @bucketlist.save
   end
 
   def show
@@ -19,6 +19,10 @@ class Api::V1::BucketlistsController < ApplicationController
 
   def destroy
 
+  end
+
+  def default_serializer_options
+    { root: false }
   end
 
   private
