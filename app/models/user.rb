@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
     end
 
     def generate_auth_token
-      SecureRandom.uuid.gsub(/\-/, "")
+      begin
+        self.auth_token = SecureRandom.uuid.gsub(/\-/, "")
+      end while self.class.exists?(auth_token: auth_token)
+      self.auth_token
     end
 end

@@ -1,6 +1,8 @@
+require "securerandom"
+
 class Api::V1::UsersController < ApplicationController
   include ActionController::HttpAuthentication::Token::ControllerMethods
-  before_action :authenticate, only: [:index]
+  before_action :authenticate, only: [:index, :show]
 
   def index
     @users = User.all
@@ -13,6 +15,10 @@ class Api::V1::UsersController < ApplicationController
 
   def create
     @user = User.create(user_params)
+  end
+
+  def show
+
   end
 
   def default_serializer_options
