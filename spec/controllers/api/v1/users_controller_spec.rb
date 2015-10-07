@@ -44,10 +44,35 @@ RSpec.describe Api::V1::UsersController, type: :controller do
   end
 
   describe "PUT #update" do
-    it "updates user" do
+    it "updates valid user" do
       @daisi = create(:user)
       request.headers['AUTHORIZATION'] ="Token token=#{@daisi.auth_token}"
       put :update, id: @daisi, user: attributes_for(:update_user)
+      expect(response).to have_http_status(:success)
+    end
+
+    it "does not update valid user" do
+      @daisi = create(:user)
+      @other_user = create(:second_user)
+      request.headers['AUTHORIZATION'] ="Token token=#{@daisi.auth_token}"
+      put :update, id: @other_user, user: attributes_for(:update_user)
+      expect(response).to have_http_status(:success)
+    end
+  end
+
+  describe "DELETE #destroy" do
+    it "destroys valid user if authorized" do
+      @daisi = create(:user)
+      request.headers['AUTHORIZATION'] ="Token token=#{@daisi.auth_token}"
+      delete :destroy, id: @daisi
+      expect(response).to have_http_status(:success)
+    end
+
+    it "does not destroy user if not authorized" do
+      @daisi = create(:user)
+      @other_user = create(:second_user)
+      request.headers['AUTHORIZATION'] ="Token token=#{@daisi.auth_token}"
+      delete :destroy, id: @other_user
       expect(response).to have_http_status(:success)
     end
   end

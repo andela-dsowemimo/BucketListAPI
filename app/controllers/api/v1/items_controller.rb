@@ -41,7 +41,7 @@ class Api::V1::ItemsController < ApplicationController
       @item.update(item_params)
       render json: @item
     else
-      render json: "Item not updated"
+      render json: { message: "Item not updated" }
     end
   end
 
