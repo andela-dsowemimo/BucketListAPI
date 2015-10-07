@@ -10,7 +10,10 @@ class Api::V1::BucketlistsController < ApplicationController
     end
   end
 
+  #===============Index action API Documentation==============
   api :GET, "/v1/bucketlists", "Show a list of All Bucketlists"
+  #===========================================================
+
   def index
     @bucketlists = Bucketlist.all
     render json: @bucketlists, status: :ok
@@ -20,8 +23,11 @@ class Api::V1::BucketlistsController < ApplicationController
     @bucketlist = Bucketlist.new
   end
 
+  #==========Create action API Documentation==========
   api :POST, "/v1/bucketlists/", "Create a Bucketlist"
   param_group :bucketlist, required: true
+  #===================================================
+
   def create
     if @user
       @bucketlist = Bucketlist.create(bucketlist_params)
@@ -33,8 +39,11 @@ class Api::V1::BucketlistsController < ApplicationController
     end
   end
 
+  #===============Show action API Documentation===============
   api :GET, "/v1/bucketlists/:id", "Show a specific Bucketlist"
   param :id, :number, required: true
+  #===========================================================
+
   def show
     if (@user && @bucketlist) && @bucketlist.user == @user
       render json: @bucketlist
@@ -43,9 +52,12 @@ class Api::V1::BucketlistsController < ApplicationController
     end
   end
 
+  #===============Update action API Documentation===============
   api :PUT, "/v1/bucketlists/:id", "Update a specific Bucketlist"
   param :id, :number, required: true
   param_group :bucketlist
+  #=============================================================
+
   def update
     if (@user && @bucketlist) && @bucketlist.user == @user
       @bucketlist.update(bucketlist_params)
@@ -55,11 +67,15 @@ class Api::V1::BucketlistsController < ApplicationController
     end
   end
 
+  #===============Delete action API Documentation===============
   api :DELETE, "/v1/bucketlists/:id", "Delete a Specific Bucketlist"
   param :id, :number, required: true
+  #================================================================
+
   def destroy
     if (@user && @bucketlist) && @bucketlist.user == @user
       @bucketlist.destroy
+      render json: "You have Successfully Deleted the Bucketlist"
     else
       render json: "You do not have the right to delete this bucketlist"
     end

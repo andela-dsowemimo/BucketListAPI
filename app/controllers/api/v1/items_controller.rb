@@ -1,26 +1,27 @@
 class Api::V1::ItemsController < ApplicationController
   before_action :find_item, only: [:update, :destroy]
   before_action :authenticate_user, only: [:create, :update, :destroy]
-  before_action :get_bucketlist, only: [:update, :destroy]
+  before_action :get_bucketlist, only: [:update, :destroy, :create]
 
   def_param_group :item do
     param :item, Array, desc: "Item Info"
     param :name, String, "Name of Item"
     param :done, TrueClass, "If Item has been done or not"
-    param :bucketlist_id, Fixnum, "ID of Bucketlist that Item belongs to", required: true
+    param :bucketlist_id, String, "ID of Bucketlist that Item belongs to", required: true
   end
 
   def new
     @item = Item.new
   end
 
+  #======================Create action API Documentation======================
   api :POST, "/v1/bucketlists/:bucketlist_id/items", "Create a Bucketlist ITEM"
   param_group :item, required: true
+  #===========================================================================
+
   def create
-    @bucketlist = Bucketlist.find_by(id: params[:id])
     if (@user && @bucketlist) && @bucketlist.user == @user
       @item = Item.create(item_params)
-      @bucketlist = Bucketlist.find(params[:id])
       @bucketlist.items << @item
       @bucketlist.save
       render json: @bucketlist
@@ -29,11 +30,14 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
+  #=============================Update action API Documentation===========================
   api :PUT, "/v1/bucketlists/:bucketlist_id/items/:id", "Update a Specific Bucketlist ITEM"
   param_group :item
   param :id, :number, required: true
+  #=======================================================================================
+
   def update
-    if (@user && @bucketlist) && @bucketlist.user == @user
+    if ((@user && @bucketlist) && @bucketlist.user == @user) && @item
       @item.update(item_params)
       render json: @item
     else
@@ -41,10 +45,14 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
+
+  #===============================Delete action API Documentation============================
   api :DELETE, "/v1/bucketlists/:bucketlist_id/items/:id", "Delete a Specific Bucketlist ITEM"
   param :id, :number, required: true
+  #==========================================================================================
+
   def destroy
-    if (@user && @bucketlist) && @bucketlist.user == @user
+    if ((@user && @bucketlist) && @bucketlist.user == @user) && @item
       @item.destroy
       render json: "Item destroyed"
     else
@@ -53,7 +61,7 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def find_item
-    @item = Item.find(params[:id])
+    @item = Item.find_by(id: params[:id])
   end
 
   def get_bucketlist
