@@ -38,12 +38,9 @@ RSpec.describe Api::V1::BucketlistsController, type: :controller do
 
   describe "GET #show" do
     context "Users access" do
-      before :each do
+      it "is valid" do
         @daisi = create(:user, email: "daisicheckpint@yahoo.com")
         @bucketlist = create(:bucketlist)
-      end
-
-      it "is valid" do
         request.headers['AUTHORIZATION'] ="Token token=#{@daisi.auth_token}"
         get :show, id: @bucketlist
         expect(response).to have_http_status(:success)
@@ -56,6 +53,20 @@ RSpec.describe Api::V1::BucketlistsController, type: :controller do
   end
 
   describe "PUT #update" do
-    
+    it "is valid" do
+      @daisi = create(:user)
+      @bucketlist = create(:bucketlist_one)
+      request.headers['AUTHORIZATION'] ="Token token=#{@daisi.auth_token}"
+      put :update, id: @bucketlist, bucketlist: attributes_for(:bucketlist_one), user: @daisi
+      expect(response).to have_http_status(:success)
+    end
+
+    it "is invalid" do
+      @daisi = create(:user)
+      @bucketlist = create(:bucketlist)
+      request.headers['AUTHORIZATION'] ="Token token=#{@daisi.auth_token}"
+      put :update, id: @bucketlist, bucketlist: attributes_for(:bucketlist)
+      expect(response).to have_http_status(:success)
+    end
   end
 end

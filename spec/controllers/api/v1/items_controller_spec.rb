@@ -11,6 +11,8 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
 
   describe "POST #create" do
     it "returns http success" do
+      @daisi = create(:user)
+      request.headers['AUTHORIZATION'] ="Token token=#{@daisi.auth_token}"
       @bucketlist = create(:bucketlist)
       post :create, bucketlist_id: @bucketlist, item: attributes_for(:item)
       expect(response).to have_http_status(:success)
@@ -19,6 +21,8 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
 
   describe "PUT #update" do
     it "returns http success" do
+      @daisi = create(:user)
+      request.headers['AUTHORIZATION'] ="Token token=#{@daisi.auth_token}"
       @bucketlist = create(:bucketlist)
       @item = create(:item)
       put :update, bucketlist_id: @bucketlist, id: @item, item: attributes_for(:item_two)

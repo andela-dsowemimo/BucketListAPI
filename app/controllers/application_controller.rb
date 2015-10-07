@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::API
-  include Swagger::Docs::ImpotentMethods
   include ActionController::HttpAuthentication::Token::ControllerMethods
   before_filter :add_allow_credentials_headers
 

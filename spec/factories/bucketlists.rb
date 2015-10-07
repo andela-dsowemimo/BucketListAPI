@@ -5,7 +5,7 @@ FactoryGirl.define do
 
     factory :bucketlist_one do
       name "Things to do before the year ends"
-      association :second_user
+      association :user
     end
 
     factory :unowned_bucketlist do

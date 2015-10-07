@@ -6,7 +6,6 @@ class User < ActiveRecord::Base
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
    format: { with: VALID_EMAIL_REGEX }
-  #  , uniqueness: {case_sensitive: false}
 
   def set_auth_token
     return if auth_token.present?
@@ -15,9 +14,7 @@ class User < ActiveRecord::Base
 
   private
     def generate_auth_token
-      # begin
-        SecureRandom.uuid.gsub(/\-/, "")
-      # end while self.class.exists?(auth_token: self.auth_token)
+      SecureRandom.uuid.gsub(/\-/, "")
     end
 
     def downcase_email

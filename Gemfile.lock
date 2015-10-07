@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/Apipie/apipie-rails.git
+  revision: 4b9bbd30c1233f836851b0303f55adbb93320189
+  specs:
+    apipie-rails (0.3.4)
+      json
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -38,8 +45,6 @@ GEM
       minitest (~> 5.1)
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
-    apipie-rails (0.3.4)
-      json
     arel (6.0.3)
     bcrypt (3.1.10)
     builder (3.2.2)
@@ -147,7 +152,7 @@ PLATFORMS
 
 DEPENDENCIES
   active_model_serializers (~> 0.8.0)
-  apipie-rails
+  apipie-rails!
   bcrypt
   factory_girl_rails
   pg
