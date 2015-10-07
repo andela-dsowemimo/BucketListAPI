@@ -957,7 +957,6 @@
         1,
         null,
         1,
-        1,
         null
       ],
       "/Users/Daisi/Desktop/Checkpoints/BucketList/app/models/bucketlist.rb": [
@@ -979,7 +978,7 @@
         1,
         null,
         1,
-        1,
+        null,
         null
       ],
       "/Users/Daisi/Desktop/Checkpoints/BucketList/app/models/item.rb": [
@@ -1081,6 +1080,6 @@
         null
       ]
     },
-    "timestamp": 1444216784
+    "timestamp": 1444239478
   }
 }
