@@ -1,11 +1,19 @@
 Rails.application.routes.draw do
-  namespace :api do
+
+  # get '/api' => redirect('/swagger/dist/index.html?url=/apidocs/api-docs.json')
+
+  namespace :api, defaults: {:format => :json} do
     namespace :v1 do
+      post "bucketlists/:id" => "items#create"
+      post "auth/login" => "authorizations#create"
+      get "auth/logout" => "authorizations#destroy"
       resources :users
-      resources :bucketlists
+      resources :bucketlists do
+        resources :items
+      end
     end
   end
-
+[]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

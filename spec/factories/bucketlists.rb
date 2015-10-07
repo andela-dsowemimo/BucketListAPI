@@ -1,7 +1,17 @@
 FactoryGirl.define do
   factory :bucketlist do
-    name "MyString"
-user nil
+    name "Things to do before I turn 30"
+    association :user
+
+    factory :bucketlist_one do
+      name "Things to do before the year ends"
+      association :second_user
+    end
+
+    factory :unowned_bucketlist do
+      name "Things to do before I graduate"
+    end
   end
+
 
 end

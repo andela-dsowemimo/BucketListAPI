@@ -1,8 +1,8 @@
 require "securerandom"
 
 class Api::V1::UsersController < ApplicationController
-  include ActionController::HttpAuthentication::Token::ControllerMethods
-  before_action :authenticate, only: [:index, :show]
+  before_action :authenticate_user, only: [:show, :update]
+  before_action :current_user, only: [:show, :update]
 
   def index
     @users = User.all
@@ -18,19 +18,20 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def show
-
-  end
-
-  def default_serializer_options
-    { root: false }
-  end
-
-  protected
-    def authenticate
-      authenticate_or_request_with_http_token do |token|
-        User.find_by(auth_token: token)
-      end
+    if @user == @current_user
+      render json: @user
+    else
+      render json: "You cannot view that page"
     end
+  end
+
+  def update
+    if @user == @current_user
+      @user.update(user_params)
+    else
+      render json: "You cannot view that page"
+    end
+  end
 
   private
     def user_params

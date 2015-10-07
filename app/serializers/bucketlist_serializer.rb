@@ -5,6 +5,7 @@ class BucketlistSerializer < ActiveModel::Serializer
   attribute :created_at, :key => :date_created
   attribute :updated_at, :key => :date_modified
   attribute :user, :key => :created_by
+  attribute :id, :key => :bucketlist_id
 
   def user
     object.user.name if object.user

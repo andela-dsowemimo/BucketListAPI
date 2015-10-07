@@ -11,6 +11,12 @@ gem 'rspec-collection_matchers'
 
 gem "active_model_serializers", "~> 0.8.0"
 
+gem 'bcrypt'
+
+gem 'apipie-rails'
+
+gem 'simplecov', :require => false, :group => :test
+
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
