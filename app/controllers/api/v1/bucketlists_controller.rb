@@ -29,7 +29,7 @@ class Api::V1::BucketlistsController < ApplicationController
   #===================================================
 
   def create
-    if @user
+    if @user == User.find_by(email: params[:email])
       @bucketlist = Bucketlist.create(bucketlist_params)
       @user.bucketlists << @bucketlist
       @user.save
