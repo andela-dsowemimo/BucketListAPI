@@ -2,10 +2,10 @@ Rails.application.routes.draw do
 
   apipie
   # get '/api' => redirect('/swagger/dist/index.html?url=/apidocs/api-docs.json')
+  root to: "api/v1/bucketlists#index"
 
   namespace :api, defaults: {:format => :json} do
     namespace :v1 do
-      root to: "bucketlists#index"
       post "bucketlists/:id" => "items#create"
       post "auth/login" => "authorizations#create"
       get "auth/logout" => "authorizations#destroy"
