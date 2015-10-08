@@ -12,6 +12,10 @@ class ApplicationController < ActionController::API
     { root: false }
   end
 
+  def index
+    redirect_to "/apipie"
+  end
+
   protected
     def authenticate_user
       authenticate_or_request_with_http_token do |token|
