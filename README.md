@@ -1,7 +1,6 @@
 #Bucketlist API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is an API that allows users to create bucketlists and add items to the bucketlists.
 
 Things you may want to cover:
 
@@ -22,7 +21,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+#Copyright
 
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Copyright (c) 2015, Daisi Sowemimo, Andela
