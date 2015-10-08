@@ -24,7 +24,7 @@ RSpec.describe User, type: :model do
 
     it "does not set auth token for user if present" do
       @daisi.set_auth_token
-      expect(@daisi.auth_token).to eq("My212aut12hdvs")
+      expect(@daisi.auth_token).to eq("My212aut1wer2hdvs")
     end
 
     it "sets auth token for user if not present" do

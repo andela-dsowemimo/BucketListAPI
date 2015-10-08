@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :user do
     name "Daisi Sowemimo"
     email "daisi.sowemimo@andela.com"
-    auth_token "My212aut12hdvs"
+    auth_token "My212aut1wer2hdvs"
     password "railsrules"
     password_confirmation "railsrules"
 
