@@ -62,7 +62,7 @@ For full details of test coverage visit [Here](http://andela-dsowemimo.github.io
 
 #Documentation
 
-This API was documented using Apipe. The Documentation can be found at [Here](https://aqueous-tundra-8862.herokuapp.com/)
+This API was documented using Apipe. The Documentation can be found [Here](https://aqueous-tundra-8862.herokuapp.com/)
 
 #Copyright
 
