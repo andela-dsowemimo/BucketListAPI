@@ -6,7 +6,8 @@ This API was built using Ruby on Rails.
 
 #Implementation
 
-The Bucketlist can simply be created using a name and adding items to the bucketlist
+The Bucketlist can simply be created using a name and adding items to the bucketlist.
+Below is an example of a Bucketlist and the items it has.
 ```
 {
   bucketlist_id: 3,
