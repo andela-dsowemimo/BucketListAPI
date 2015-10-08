@@ -8,6 +8,12 @@ This API was built using Ruby on Rails.
 
 The Bucketlist can simply be created using a name and adding items to the bucketlist
 
+
+#Authentication
+
+Users are authenticated using an auth_token. This ensures that only authenticated users can interact with non public endpoints.
+The table below shows a list of the endpoints and their access restrictions.
+
 |    Endpoint              | Functionality                      | Public Access         |
 | -------------            | -------------                      | -------------         |
 | POST /auth/login         | Logs a user in                     |        TRUE           |
@@ -19,25 +25,7 @@ The Bucketlist can simply be created using a name and adding items to the bucket
 | PUT /bucketlists/<id>    | Update this bucket list            |        FALSE          |
 | DELETE /bucketlists/<id> | Delete this single bucket list     |        FALSE          |
 
-Things you may want to cover:
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 #Copyright
 
 Copyright (c) 2015, Daisi Sowemimo, Andela
