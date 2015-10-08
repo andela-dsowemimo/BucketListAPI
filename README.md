@@ -54,6 +54,13 @@ The table below shows a list of the endpoints and their access restrictions.
 | PUT /bucketlists/<id>    | Update this bucket list            |        FALSE          |
 | DELETE /bucketlists/<id> | Delete this single bucket list     |        FALSE          |
 
+#Test
+All test were written using RSpec
+For full details of test coverage visit [Here](http://andela-dsowemimo.github.io/Bucketlist_API_Coverage)
+
+[![Coverage Badge](/coverage/coverage-badge.png)](http://andela-dsowemimo.github.io/Bucketlist_API_Coverage)
+
+
 
 #Copyright
 

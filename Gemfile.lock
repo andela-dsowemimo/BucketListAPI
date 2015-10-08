@@ -5,6 +5,12 @@ GIT
     apipie-rails (0.3.4)
       json
 
+GIT
+  remote: git://github.com/matthew342/simplecov-badge.git
+  revision: beffc405c79e6c6d436ff9edf3db69e3ad3e8869
+  specs:
+    simplecov-badge (2.0.3)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -136,7 +142,6 @@ GEM
       docile (~> 1.1.0)
       multi_json
       simplecov-html (~> 0.8.0)
-    simplecov-badge (2.0.2)
     simplecov-html (0.8.0)
     slop (3.6.0)
     spring (1.4.0)
@@ -169,7 +174,7 @@ DEPENDENCIES
   rspec-collection_matchers
   rspec-rails
   simplecov
-  simplecov-badge
+  simplecov-badge!
   spring
   sqlite3
 
