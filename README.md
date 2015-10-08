@@ -1,36 +1,20 @@
 #Bucketlist API
 
 This is an API that allows users to create bucketlists and add items to the bucketlists.
-This API was built using Ruby on Rails
-Things you may want to cover:
+This API was built using Ruby on Rails.
 
-<tt>
-{
-  bucketlist_id: 3,
-  name: "Things I gotta do",
-  items: [
-  {
-    item_id: 8,
-    name: "Bungee Jump",
-    done: false,
-    created_at: "2015-10-05T10:11:59.105Z",
-    updated_at: "2015-10-05T10:11:59.131Z",
-    bucketlist_id: 3
-  },
-  {
-    item_id: 9,
-    name: "Snorkling",
-    done: true,
-    created_at: "2015-10-05T10:13:31.892Z",
-    updated_at: "2015-10-05T10:13:31.910Z",
-    bucketlist_id: 3
-  }
-  ],
-  date_created: "2015-10-05T09:38:42.945Z",
-  date_modified: "2015-10-05T09:38:42.945Z",
-  created_by: "daisi"
-}
-</tt>
+|    Endpoint              | Functionality                      | Public Access |
+| -------------            | -------------                      | ------------- |
+| POST /auth/login         | Logs a user in                     |      TRUE     |
+| GET /auth/logout         | Logs a user out                    |               |
+| POST /bucketlists/       | Create a new bucket list           |               |
+| GET /bucketlists/        | List all the created bucket lists  |               |
+| GET /bucketlists/<id>    | Get single bucket list             |               |
+| POST /bucketlists/<id>   | Add a new item to this bucket list |               |
+| PUT /bucketlists/<id>    | Update this bucket list            |               |
+| DELETE /bucketlists/<id> | Delete this single bucket list     |               |
+
+Things you may want to cover:
 
 * Ruby version
 
