@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: {:format => :json} do
     namespace :v1 do
+      root to: "bucketlists#index"
       post "bucketlists/:id" => "items#create"
       post "auth/login" => "authorizations#create"
       get "auth/logout" => "authorizations#destroy"
