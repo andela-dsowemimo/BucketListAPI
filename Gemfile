@@ -13,9 +13,14 @@ gem "active_model_serializers", "~> 0.8.0"
 
 gem 'bcrypt'
 
+gem 'simplecov-badge', :require => false
+
 gem 'apipie-rails', :github => 'Apipie/apipie-rails'
 
-gem 'simplecov', :require => false, :group => :test
+group :test do
+  gem "json-schema"
+  gem 'simplecov', :require => false
+end
 
 group :development, :test do
   gem 'pry'

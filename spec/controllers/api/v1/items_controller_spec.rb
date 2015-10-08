@@ -16,7 +16,12 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
       @bucketlist = create(:bucketlist)
       @bucketlist.user = @daisi
       @bucketlist.save
-      post :create, bucketlist_id: @bucketlist, item: attributes_for(:item)
+      expect{post :create, bucketlist_id: @bucketlist,
+        item: attributes_for(:item)
+      }.to change(Item, :count).by(1)
+      expect(JSON.parse(response.body)["name"]).to eq("Things to do before I turn 30")
+      expect(JSON.parse(response.body)["items"][0]["name"]).to eq("Get Married")
+      expect(JSON.parse(response.body)["items"][0]["done"]).to eq(false)
       expect(response).to have_http_status(:success)
     end
 
@@ -24,7 +29,10 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
       @daisi = create(:user)
       request.headers['AUTHORIZATION'] ="Token token=#{@daisi.auth_token}"
       @bucketlist = create(:bucketlist)
-      post :create, bucketlist_id: @bucketlist, item: attributes_for(:item)
+      expect{post :create, bucketlist_id: @bucketlist,
+        item: attributes_for(:item)
+      }.not_to change(Item, :count)
+      expect(response.body).to eq("Sorry you don't have access")
       expect(response).to have_http_status(:success)
     end
   end
@@ -38,6 +46,8 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
       @bucketlist.save
       @item = create(:item)
       put :update, bucketlist_id: @bucketlist, id: @item, item: attributes_for(:item_two)
+      expect(JSON.parse(response.body)["name"]).to eq("Buy House")
+      expect(JSON.parse(response.body)["done"]).to eq(true)
       expect(response).to have_http_status(:success)
     end
 
@@ -47,6 +57,7 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
       @bucketlist = create(:bucketlist)
       @item = create(:item)
       put :update, bucketlist_id: @bucketlist, id: @item, item: attributes_for(:item_two)
+      expect(response.body).to eq("Item not updated")
       expect(response).to have_http_status(:success)
     end
   end
@@ -60,7 +71,8 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
       @item = create(:item)
       @bucketlist.items << @item
       @bucketlist.save
-      delete :destroy, bucketlist_id: @bucketlist, id: @item
+      expect{ delete :destroy, bucketlist_id: @bucketlist, id: @item }.to change(Item, :count).by(-1)
+      expect(response.body).to eq("Item destroyed")
       expect(response).to have_http_status(:success)
     end
 
@@ -69,7 +81,8 @@ RSpec.describe Api::V1::ItemsController, type: :controller do
       request.headers['AUTHORIZATION'] ="Token token=#{@daisi.auth_token}"
       @bucketlist = create(:bucketlist)
       @item = create(:item)
-      delete :destroy, bucketlist_id: @bucketlist, id: @item
+      expect{ delete :destroy, bucketlist_id: @bucketlist, id: @item }.not_to change(Item, :count)
+      expect(response.body).to eq("Item not destroyed")
       expect(response).to have_http_status(:success)
     end
   end
